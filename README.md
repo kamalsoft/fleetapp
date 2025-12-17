@@ -10,16 +10,15 @@ This repository contains the backend microservices that power the Synapse Fleet 
 
 ## ✨ Core Features
 
-- **Real-Time Telematics:** Live GPS tracking, AI-powered dash cams, and driver behavior monitoring.
-- **Predictive Analytics:** Leverage machine learning to forecast maintenance needs and prevent costly downtime.
-- **Compliance Automation:** Effortless Hours of Service (HOS) logging with our FMCSA-registered ELD solution.
-- **Operations Management:** Advanced tools for multi-stop route optimization and service order dispatching.
-- **Developer-First:** A robust REST API, real-time webhooks, and pre-built connectors to integrate with any system.
-- **Multi-Tenancy:** Secure, isolated environments for each customer's data.
+- **Unified Platform:** Manage every aspect of your fleet—vehicles, drivers, safety, compliance, and maintenance—from a single command center.
+- **AI-Powered Safety:** Go beyond simple tracking with an integrated video telematics solution that automatically detects risky behavior and helps you coach drivers.
+- **Predictive Maintenance:** Leverage machine learning on real-time telematics data to forecast vehicle health and prevent costly, unplanned downtime.
+- **Complete Driver Lifecycle:** Streamline everything from driver recruiting and onboarding to document management, HOS compliance, and automated payroll settlements.
+- **Developer-First Ecosystem:** Build anything with a robust REST API, real-time event streaming via webhooks, and a growing marketplace of pre-built integrations.
 
 ## 🏛️ Architecture Overview
 
-Synapse Fleet is built on a **Microservices Architecture** to ensure scalability, reliability, and maintainability. Each service is responsible for a distinct business capability and can be developed, deployed, and scaled independently.
+Synapse Fleet is built on a modern **Microservices Architecture** to ensure scalability, reliability, and maintainability. Each service is a domain expert, responsible for a distinct business capability. This allows for independent development, deployment, and scaling to meet enterprise demands.
 
 ```mermaid
 graph TD
@@ -38,6 +37,7 @@ graph TD
             FleetOpsService
             IntegrationsService
             AnalyticsService
+            VideoService
             NotificationService
         end
     end
@@ -45,6 +45,8 @@ graph TD
     subgraph Databases
         PostgreSQL
         TimescaleDB
+        DataLake[Data Lake / S3]
+        DataWarehouse[Snowflake / BigQuery]
     end
 
     Clients --> API_Gateway
@@ -55,7 +57,16 @@ graph TD
     API_Gateway --> FleetOpsService
     API_Gateway --> IntegrationsService
     API_Gateway --> AnalyticsService
+    API_Gateway --> VideoService
     API_Gateway --> NotificationService
+
+    subgraph Data & Event Flow
+        FleetOpsService -- Publishes Events --> MessageQueue[Message Queue]
+        MessageQueue --> DriverService
+        MessageQueue --> AnalyticsService
+        MessageQueue --> IntegrationsService
+        PostgreSQL -- CDC --> DataLake
+    end
 ```
 
 ## 🚀 Getting Started (Development)
