@@ -37,6 +37,7 @@ graph TD
             FleetOpsService
             IntegrationsService
             AnalyticsService
+            VendorService
             VideoService
             NotificationService
         end
@@ -57,6 +58,7 @@ graph TD
     API_Gateway --> FleetOpsService
     API_Gateway --> IntegrationsService
     API_Gateway --> AnalyticsService
+    API_Gateway --> VendorService
     API_Gateway --> VideoService
     API_Gateway --> NotificationService
 

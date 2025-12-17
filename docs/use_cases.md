@@ -119,3 +119,27 @@
   7.  The new deduction appears as a line item on the settlement details page.
 - **Alternative Flows:**
   - **4a. Invalid Amount:** If the user enters a non-numeric or negative value for the amount, the system displays an error and prevents saving.
+
+### UC-08: Onboard a Maintenance Vendor
+
+- **Actor:** Fleet Manager
+- **Description:** A fleet manager adds a new trusted repair shop to the system so they can be assigned maintenance work.
+- **Preconditions:** The user is logged in with permissions to manage vendors.
+- **Basic Flow:**
+  1.  **User** navigates to the "Vendors" section and clicks "Add Vendor".
+  2.  **User** enters the vendor's name, contact information, address, and specialty (e.g., "Tire Repair", "Engine Work").
+  3.  **User** saves the new vendor profile.
+  4.  **System** creates a new record in the `VENDORS` table.
+  5.  The new vendor is now available to be assigned to maintenance work orders.
+
+### UC-09: Process a Vendor Invoice
+
+- **Actor:** Fleet Manager, Accountant
+- **Description:** A user receives an invoice from a vendor for completed maintenance and processes it for payment.
+- **Preconditions:** The user is logged in. The vendor exists, and a corresponding maintenance log for the work exists.
+- **Basic Flow:**
+  1.  **User** navigates to the "Vendors" section and selects the "Invoices" tab.
+  2.  **User** clicks "Add Invoice" and selects the vendor and the related maintenance job.
+  3.  **User** enters the invoice number, amount, and due date, and can optionally upload a scan of the invoice.
+  4.  **System** saves the invoice with a status of "Pending".
+  5.  When payment is made, the user can update the status to "Paid".

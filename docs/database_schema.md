@@ -113,6 +113,22 @@ erDiagram
         varchar status
         text response_body
     }
+    VENDORS {
+        int vendor_id PK
+        int company_id FK
+        varchar name
+        varchar contact_info
+        varchar specialty
+    }
+    VENDOR_INVOICES {
+        int invoice_id PK
+        int vendor_id FK
+        int maintenance_log_id FK
+        varchar invoice_number
+        decimal amount
+        date due_date
+        varchar status
+    }
     DOCUMENTS {
         int document_id PK
         int company_id FK
@@ -163,6 +179,9 @@ erDiagram
     }
     COMPANIES ||--o{ API_KEYS : "has"
     COMPANIES ||--o{ WEBHOOKS : "configures"
+    COMPANIES ||--o{ VENDORS : "manages"
+
+    VENDORS ||--o{ VENDOR_INVOICES : "sends"
 
     VEHICLES ||--o{ VEHICLE_HEALTH_PREDICTIONS : "has"
 
@@ -179,6 +198,7 @@ erDiagram
     DRIVERS ||--o{ SERVICE_ORDERS : "assigned to"
     VEHICLES ||--o{ SERVICE_ORDERS : "used for"
     VEHICLES ||--o{ GPS_DATA : "generates"
+    MAINTENANCE_LOGS }|..|| VENDOR_INVOICES : "is detailed in"
     VEHICLES ||--o{ MAINTENANCE_LOGS : "has"
     DRIVERS ||--o{ HOS_LOGS : "records"
     DRIVERS ||--o{ DVIR_REPORTS : "submits"

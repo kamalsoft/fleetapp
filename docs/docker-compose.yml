@@ -19,11 +19,13 @@ services:
       - VEHICLE_SERVICE_URL=http://vehicle-service:3001
       - DRIVER_SERVICE_URL=http://driver-service:3002
       - ANALYTICS_SERVICE_URL=http://analytics-service:3004
+      - VENDOR_SERVICE_URL=http://vendor-service:3005
       # ... other service URLs
     depends_on:
       - vehicle-service
       - driver-service
       - analytics-service
+      - vendor-service
 
   vehicle-service:
     build:
@@ -69,6 +71,18 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3004
+      - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
+    depends_on:
+      - postgres
+
+  vendor-service:
+    build:
+      context: ./services/vendor-service
+    ports:
+      - '3005:3005'
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
       - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
     depends_on:
       - postgres

@@ -37,6 +37,7 @@ Synapse Fleet is composed of the following core microservices:
 - **FleetOps Service:** Handles core operations: creating and managing places, service orders, and payloads.
 - **Integrations Service:** Manages and dispatches webhooks to external systems.
 - **Video Service:** Ingests, stores, and processes video footage from dash cams, running AI models to detect events.
+- **Vendor Service:** Manages third-party vendors, their services, and the lifecycle of their invoices.
 - **Analytics Service:** Processes historical and real-time data to generate predictive insights (e.g., maintenance forecasts).
 - **Notification Service:** Sends alerts and notifications (email, SMS, push) to users.
 - **API Gateway:** A single entry point for all client requests (Web App, Mobile App), handling routing, authentication, and rate limiting.
@@ -60,6 +61,7 @@ graph TD
             FleetOpsService
             IntegrationsService
             AnalyticsService
+            VendorService
             VideoService
             NotificationService
         end
@@ -86,6 +88,7 @@ graph TD
     API_Gateway --> FleetOpsService
     API_Gateway --> IntegrationsService
     API_Gateway --> AnalyticsService
+    API_Gateway --> VendorService
     API_Gateway --> VideoService
     API_Gateway --> NotificationService
 
@@ -97,6 +100,7 @@ graph TD
     DriverService --> PostgreSQL
     IAMService --> PostgreSQL
     AnalyticsService --> PostgreSQL
+    VendorService --> PostgreSQL
     VideoService --> DataLake
     FleetOpsService --> PostgreSQL
     TrackingService --> TimescaleDB

@@ -24,6 +24,8 @@ This document provides a comprehensive technical overview of Synapse Fleet. It i
 - The system must enforce data isolation between different companies (Multi-tenancy).
 - The system shall allow for the management of driver and vehicle documents, including expiry date notifications.
 - The system shall calculate driver settlements based on completed work.
+- The system shall allow for the management of third-party vendors, including profiles and service offerings.
+- The system shall support tracking and managing invoices from vendors for completed work.
 - The system shall offer pre-built integrations with major TMS, ERP, and fuel card providers.
 - ... (and so on for all features)
 
