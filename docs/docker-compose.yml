@@ -1,0 +1,90 @@
+# docker-compose.yml
+#
+# This file defines the local development environment for the Fleet Management System.
+# Run `docker-compose up -d` to start all services.
+
+version: '3.8'
+
+services:
+  # --- Application Services ---
+
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - VEHICLE_SERVICE_URL=http://vehicle-service:3001
+      - DRIVER_SERVICE_URL=http://driver-service:3002
+      - ANALYTICS_SERVICE_URL=http://analytics-service:3004
+      # ... other service URLs
+    depends_on:
+      - vehicle-service
+      - driver-service
+      - analytics-service
+
+  vehicle-service:
+    build:
+      context: ./services/vehicle-service
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
+    depends_on:
+      - postgres
+
+  driver-service:
+    build:
+      context: ./services/driver-service
+    ports:
+      - '3002:3002'
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
+    depends_on:
+      - postgres
+
+  tracking-service:
+    build:
+      context: ./services/tracking-service
+    ports:
+      - '3003:3003'
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+      - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
+    depends_on:
+      - postgres
+
+  analytics-service:
+    build:
+      context: ./services/analytics-service
+    ports:
+      - '3004:3004'
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+      - DATABASE_URL=postgres://user:password@postgres:5432/fms_db
+    depends_on:
+      - postgres
+
+  # --- Databases ---
+
+  postgres:
+    image: timescale/timescaledb:latest-pg14
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=fms_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
+volumes:
+  postgres_data:
