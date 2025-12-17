@@ -30,13 +30,25 @@ Your dashboard is the central hub for your fleet's operations. Here you can see:
 
 ### 1.4. Managing Your Drivers
 
+### 1.4. How to Manage Maintenance
+
+From routine preventive maintenance to unexpected repairs, Synapse Fleet helps you track every service event to minimize downtime and control costs.
+
+1.  Navigate to the "Maintenance" section from the main menu.
+2.  To create a new job, click "Create Work Order".
+3.  Select the vehicle that requires service and fill in the details of the required work (e.g., "Brake System Inspection", "Quarterly Service").
+4.  **To assign the work to an external shop, select a vendor from the "Assign Vendor" dropdown menu.** Your list of trusted vendors will appear here.
+5.  Save the work order. The vendor can now be notified, and you can track the job's status from "Pending" to "Completed".
+
+### 1.5. Managing Your Drivers
+
 Synapse Fleet provides a complete solution for managing your drivers from recruitment to settlement.
 
 1.  **Onboarding:** Navigate to the "Drivers" tab and click "Add Driver". You can create a profile and send an invitation for them to download the mobile app, where they can upload their CDL and other required documents.
 2.  **Document Management:** In each driver's profile, you can view all uploaded documents, approve or reject them, and set expiry dates. The system will automatically alert you before a document expires.
 3.  **Settlements:** After a driver completes their work, you can run settlement reports to calculate their pay based on the orders they've fulfilled.
 
-### 1.5. Managing Vendors and Invoices
+### 1.6. Managing Vendors and Invoices
 
 Keep track of all your external repair shops, parts suppliers, and their associated costs.
 
@@ -44,7 +56,7 @@ Keep track of all your external repair shops, parts suppliers, and their associa
 2.  **Assign Work:** When you create a maintenance work order for a vehicle, you can assign it directly to a vendor from your directory.
 3.  **Track Invoices:** When a vendor sends you an invoice, you can log it against the completed work order. This allows you to track total maintenance spend per vehicle and manage payment statuses to ensure vendors are paid on time.
 
-### 1.6. Understanding Your Fleet with Analytics Reports
+### 1.7. Understanding Your Fleet with Analytics Reports
 
 Our reports turn your fleet's data into actionable insights. Use them to track performance, identify inefficiencies, and make data-driven decisions.
 
